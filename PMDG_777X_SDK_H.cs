@@ -617,7 +617,7 @@ namespace PMDG_777X_SDK_ns
         // CDU Structures
         //---------------
         [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi, Pack = 4)]
-        struct PMDG_777X_CDU_Cell
+        public struct PMDG_777X_CDU_Cell
         {
             public char Symbol;
             public byte Color;                    // any of PMDG_777X_CDU_COLOR_ defines
@@ -625,7 +625,7 @@ namespace PMDG_777X_SDK_ns
         };
 
         [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi, Pack = 4)]
-        struct PMDG_777X_CDU_Screen
+        public struct PMDG_777X_CDU_Screen
         {
             [MarshalAs(UnmanagedType.ByValArray, SizeConst = 24)]
             public CDUROWS[] cduCols;
