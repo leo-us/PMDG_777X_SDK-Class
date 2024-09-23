@@ -619,7 +619,7 @@ namespace PMDG_777X_SDK_ns
         [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi, Pack = 4)]
         public struct PMDG_777X_CDU_Cell
         {
-            public char Symbol;
+            public byte Symbol;                    //Use 'byte' for WPF projects ('char' seems to work with Windows Forms)
             public byte Color;                    // any of PMDG_777X_CDU_COLOR_ defines
             public byte Flags;                    // a combination of PMDG_777X_CDU_FLAG_ bits
         };
