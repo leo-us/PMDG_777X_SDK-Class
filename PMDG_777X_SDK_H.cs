@@ -1,17 +1,19 @@
-﻿using System.Runtime.InteropServices;
+using System.Runtime.InteropServices;
 
 
 namespace PMDG_777X_SDK_ns
 {
     public class PMDG_777X_SDK_class
     {
-        // PMDG Client Data Area definitions:
+        //PMDG 777X Names:
         public const string PMDG_777X_DATA_NAME = "PMDG_777X_Data";
         public const string PMDG_777X_CONTROL_NAME = "PMDG_777X_Control";
         public const string PMDG_777X_CDU_0_NAME = "PMDG_777X_CDU_0";
         public const string PMDG_777X_CDU_1_NAME = "PMDG_777X_CDU_1";
         public const string PMDG_777X_CDU_2_NAME = "PMDG_777X_CDU_2";
-
+        //PMDG 777X Enums:
+        public enum PMDG_777X_IDs { PMDG_777X_DATA_ID = 0x504D4447, }
+        public enum PMDG_777X_DATA_DEFINITIONS { PMDG_777X_DATA_DEFINITION = 0x504D4448 };
 
         [StructLayout(LayoutKind.Sequential, Pack = 4, CharSet = CharSet.Ansi)]
         public struct PMDG_777X_Data
@@ -613,22 +615,25 @@ namespace PMDG_777X_SDK_ns
         }//END OF 'PMDG_777X_Data' structure
 
 
-
-        // CDU Structures
-        //---------------
+        //---------------------------
+        // CDU Structures & Constants
+        //---------------------------
+        //CELL
         [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi, Pack = 4)]
         public struct PMDG_777X_CDU_Cell
         {
-            public byte Symbol;                    //Use 'byte' for WPF projects ('char' seems to work with Windows Forms)
+            public byte Symbol;                   //Use 'byte' for WPF projects ('char' seems to work with Windows Forms)
             public byte Color;                    // any of PMDG_777X_CDU_COLOR_ defines
             public byte Flags;                    // a combination of PMDG_777X_CDU_FLAG_ bits
         };
-
+        //SCREEN
         [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi, Pack = 4)]
         public struct PMDG_777X_CDU_Screen
         {
+            
             [MarshalAs(UnmanagedType.ByValArray, SizeConst = 24)]
             public CDUROWS[] cduCols;
+
 
             [StructLayout(LayoutKind.Sequential, Pack = 4, CharSet = CharSet.Ansi)]
             public struct CDUROWS
@@ -639,9 +644,22 @@ namespace PMDG_777X_SDK_ns
             public byte Powered;  
             // true if the CDU is powered
         };
+        //777X CDU Screen Cell Colors:
+        public const int PMDG_777X_CDU_COLOR_WHITE = 0;
+        public const int PMDG_777X_CDU_COLOR_CYAN = 1;
+        public const int PMDG_777X_CDU_COLOR_GREEN = 2;
+        public const int PMDG_777X_CDU_COLOR_MAGENTA = 3;
+        public const int PMDG_777X_CDU_COLOR_AMBER = 4;
+        public const int PMDG_777X_CDU_COLOR_RED = 5;
+        //777X CDU Screen Cell flags:
+        public const int PMDG_777X_CDU_FLAG_SMALL_FONT = 0x01; // small font, including that used for line headers
+        public const int PMDG_777X_CDU_FLAG_REVERSE = 0x02; // character background is highlighted in reverse video
+        public const int PMDG_777X_CDU_FLAG_UNUSED = 0x04; // dimmed character color indicating inop/unused entries
 
 
-        // Control Structure
+        //------------------
+        // CONTROL Structure
+        //------------------
         public struct PMDG_777X_Control
         {
             public PMDGEvents Event;
@@ -649,7 +667,9 @@ namespace PMDG_777X_SDK_ns
         };
 
 
+        //---------------------------------------
         // Mouse flags for mouse click simulation
+        //---------------------------------------
         public const UInt32 MOUSE_FLAG_RIGHTSINGLE = 0x80000000;
         public const UInt32 MOUSE_FLAG_MIDDLESINGLE = 0x40000000;
         public const UInt32 MOUSE_FLAG_LEFTSINGLE = 0x20000000;
@@ -669,8 +689,9 @@ namespace PMDG_777X_SDK_ns
         public const UInt32 MOUSE_FLAG_WHEEL_UP = 0x00004000;
         public const UInt32 MOUSE_FLAG_WHEEL_DOWN = 0x00002000;
 
-
-        // Audio control panel selected receiver flags.
+        //--------------------------------------------
+        // Audio control panel selected receiver flags
+        //--------------------------------------------
         // The COMM_ReceiverSwitches[3] variables may contain any combination of these flags.
         public const UInt32 ACP_SEL_RECV_VHFL = 0x0001;
         public const UInt32 ACP_SEL_RECV_VHFC = 0x0002;
