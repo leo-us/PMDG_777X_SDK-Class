@@ -11,10 +11,27 @@ namespace PMDG_777X_SDK_ns
         public const string PMDG_777X_CDU_0_NAME = "PMDG_777X_CDU_0";
         public const string PMDG_777X_CDU_1_NAME = "PMDG_777X_CDU_1";
         public const string PMDG_777X_CDU_2_NAME = "PMDG_777X_CDU_2";
-        //PMDG 777X Enums:
-        public enum PMDG_777X_IDs { PMDG_777X_DATA_ID = 0x504D4447, }
-        public enum PMDG_777X_DATA_DEFINITIONS { PMDG_777X_DATA_DEFINITION = 0x504D4448 };
 
+        //PMDG 777X Enums:
+        public enum PMDG_777X_IDs
+        { 
+            PMDG_777X_DATA_ID = 0x504D4447,
+            PMDG_777X_CONTROL_ID = 0x504D4449,
+            PMDG_777X_CDU_0_ID = 0x4E477835,
+            PMDG_777X_CDU_1_ID = 0x4E477836,
+            PMDG_777X_CDU_2_ID = 0x4E477837,
+        }
+        public enum PMDG_777X_DATA_DEFINITIONS
+        { 
+            PMDG_777X_DATA_DEFINITION = 0x504D4448,
+            PMDG_777X_CONTROL_DEFINITION = 0x504D444A,
+            PMDG_777X_CDU_0_DEFINITION = 0x4E477838,
+            PMDG_777X_CDU_1_DEFINITION = 0x4E477839,
+            PMDG_777X_CDU_2_DEFINITION = 0x4E47783A,
+        };      
+        
+        
+        
         [StructLayout(LayoutKind.Sequential, Pack = 4, CharSet = CharSet.Ansi)]
         public struct PMDG_777X_Data
         {
